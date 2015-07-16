@@ -14,8 +14,8 @@
       </div>
       {% for file in filelist -%}
       <div class="row">
-        <div class="col-md-2">{{ file["startDateTime"] }}</div>
-        <div class="col-md-10">
+        <div class="col-md-12">
+          {{ file["startDateTime"] }}&nbsp;&nbsp;&nbsp;&nbsp;
           <a href="{{ file["viewPageURL"] }}">{{ file["fullTitle"] }}</a>
         </div>
       </div>
