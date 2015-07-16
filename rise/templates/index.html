@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="http://{{ netloc }}/static/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>rise media viewr</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h3>rise media viewr</h3>
+        </div>
+      </div>
+      {% for file in filelist -%}
+      <div class="row">
+        <div class="col-md-2">{{ file["startDateTime"] }}</div>
+        <div class="col-md-10">
+          <a href="{{ file["viewPageURL"] }}">{{ file["fullTitle"] }}</a>
+        </div>
+      </div>
+      {%- endfor %}
+    </div>
+  </body>
+</html>

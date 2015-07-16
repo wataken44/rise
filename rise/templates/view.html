@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="http://{{ netloc }}/static/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>rise media viewr::{{ file["fullTitle"] }}</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h3>rise media viewr::{{ file["fullTitle"] }}</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <video autoplay controls>
+            <source src="{{ file["mediaURL"] }}" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'/>
+          </video>
+        </div>
+        <div class="col-md-12">
+          <a href="{{ file["mediaURL"] }}">direct</a>&nbsp;&nbsp;<a href="/">index</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
