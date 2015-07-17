@@ -3,13 +3,14 @@
   <head>
     <link rel="stylesheet" href="http://{{ netloc }}/static/bootstrap.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>rise media viewr::{{ file["fullTitle"] }}</title>
+    <title>{{ file["fullTitle"] }}  {% if file["episode"] %}#{{ file["episode"] }} {% endif %}{{ file["subTitle"] }}</title>
   </head>
   <body>
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h3>rise media viewr::{{ file["fullTitle"] }}</h3>
+          {{ file["fullTitle"] }}&nbsp;&nbsp;
+          <small>{% if file["episode"] %}#{{ file["episode"] }}&nbsp;{% endif %}{{ file["subTitle"] }}</small>
         </div>
       </div>
       <div class="row">
@@ -19,7 +20,7 @@
           </video>
         </div>
         <div class="col-md-12">
-          <a href="{{ file["mediaURL"] }}">direct</a>&nbsp;&nbsp;<a href="/">index</a>
+          <a href="/">index</a>&nbsp;&nbsp;<a href="{{ file["mediaURL"] }}">direct</a>
         </div>
       </div>
     </div>

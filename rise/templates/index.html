@@ -16,7 +16,8 @@
       <div class="row">
         <div class="col-md-12">
           {{ file["startDateTime"] }}&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="{{ file["viewPageURL"] }}">{{ file["fullTitle"] }}</a>
+          <a href="{{ file["viewPageURL"] }}">{{ file["fullTitle"] }}</a>&nbsp;&nbsp;
+          <small>{% if file["episode"] %}#{{ file["episode"] }}&nbsp;{% endif %}{{ file["subTitle"] }}</small>
         </div>
       </div>
       {%- endfor %}
