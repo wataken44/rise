@@ -6,21 +6,23 @@
     <title>{{ file["fullTitle"] }}  {% if file["episode"] %}#{{ file["episode"] }} {% endif %}{{ file["subTitle"] }}</title>
   </head>
   <body>
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
-        <div class="col-md-12">
-          {{ file["fullTitle"] }}&nbsp;&nbsp;
-          <small>{% if file["episode"] %}#{{ file["episode"] }}&nbsp;{% endif %}{{ file["subTitle"] }}</small>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 text-center">
           <video autoplay controls width="100%">
             <source src="{{ file["mediaURL"] }}" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'/>
           </video>
         </div>
+      </div>
+      <div class="row">
         <div class="col-md-12">
-          <a href="/">index</a>&nbsp;&nbsp;<a href="{{ file["mediaURL"] }}">direct</a>
+          <div class="pull-left">
+            {{ file["fullTitle"] }}&nbsp;&nbsp;
+            <small>{% if file["episode"] %}#{{ file["episode"] }}&nbsp;{% endif %}{{ file["subTitle"] }}</small>
+          </div>
+          <div class="pull-right">
+            <a href="{{ file["mediaURL"] }}">raw</a> | <a href="/">index</a>
+          </div>
         </div>
       </div>
     </div>
