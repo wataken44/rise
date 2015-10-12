@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="http://{{ netloc }}/static/bootstrap.min.css">
+    <link rel="stylesheet" href="//{{ netloc }}/static/bootstrap.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="//{{ netloc }}/static/jquery-2.1.4.js"></script>
+    <script src="//{{ netloc }}/static/js.cookie.js"></script>
+    <script src="//{{ netloc }}/static/view.js"></script>
     <title>{{ file["fullTitle"] }}  {% if file["episode"] %}#{{ file["episode"] }} {% endif %}{{ file["subTitle"] }}</title>
   </head>
   <body>
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12 text-center">
-          <video autoplay controls width="100%">
+          <video id="video" controls width="100%">
             <source src="{{ file["mediaURL"] }}" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'/>
           </video>
         </div>
