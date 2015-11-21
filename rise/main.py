@@ -22,19 +22,16 @@ root_dir = os.path.abspath(os.path.dirname(__file__)) + "/"
 config = None
 filelist = None
 fileindex = None
-last_updated = None
+last_mtime = None
 
 import flask
 app = flask.Flask(__name__)
 
 @app.route("/")
 def handle_index():
-    global last_updated
     global filelist
 
-    d = datetime.datetime.now() - last_updated 
-    if d.seconds > 1800:
-        load()
+    reload_if_updated()
         
     return flask.render_template(
         'index.html',
@@ -103,9 +100,15 @@ def load_filelist():
 def get_netloc(url):
     return urlparse(url).netloc
 
+def reload_if_updated():
+    global last_mtime
+    mtime = os.path.getmtime(get_config("list"))
+    
+    if last_mtime != mtime:
+        last_mtime = mtime
+        load()
+
 def load():
-    global last_updated
-    last_updated = datetime.datetime.now()
     load_config()
     load_filelist()
 
