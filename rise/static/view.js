@@ -31,3 +31,11 @@ view.saveState = function() {
 window.onload = function() {
   view.init();
 };
+
+view.skip = function(delta) {
+  ct = view.video.currentTime + delta;
+  ct = Math.max(ct, 0);
+  ct = Math.min(ct, view.video.duration);
+  view.video.currentTime = ct;
+  return false;
+}
