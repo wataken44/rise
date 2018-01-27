@@ -8,8 +8,11 @@ view.init = function() {
   if(!($("#video") && $("#video")[0])) { return; } // do nothing
   
   view.video = $("#video")[0];
+
+  view.adjust();
+  
   if(Cookies.get('url') === location.href && Cookies.get('time')) {
-    ct = Math.max(parseInt(Cookies.get('time')) - 5, 0);
+    var ct = Math.max(parseInt(Cookies.get('time')) - 5, 0);
     view.video.currentTime = ct;
   }
   view.video.play();
@@ -18,7 +21,7 @@ view.init = function() {
 
 view.saveState = function() {
   if(!view.video.ended) {
-    ct = view.video.currentTime;
+    var ct = view.video.currentTime;
     
     Cookies.set('url', location.href, { expires: 64, path: '/' });
     Cookies.set('time', ct.toString(), { expires: 64, path: '/' });
@@ -28,14 +31,40 @@ view.saveState = function() {
   }
 };
 
+view.skip = function(delta) {
+  var t = view.video.currentTime + delta;
+  t = Math.max(t, 0);
+  t = Math.min(t, view.video.duration);
+  view.video.currentTime = t;
+  return false;
+};
+
+view.adjust = function() {
+  view._adjust();
+  view._adjust();
+};
+
+view._adjust = function() {
+  if(!view.video) { return; }
+
+  var ww = $(window).width();
+  var wh = $(window).height();
+  
+  var vw = view.video.videoWidth;
+  var vh = view.video.videoHeight;
+
+  var fh = $("#footer-row").height();
+
+  var r = vw / ww * (wh - fh) / vh * 100;
+  if( r > 100 ) { r = 100; }
+  
+  $("#video-div").width(r.toString() + "%");
+};
+
 window.onload = function() {
   view.init();
 };
 
-view.skip = function(delta) {
-  ct = view.video.currentTime + delta;
-  ct = Math.max(ct, 0);
-  ct = Math.min(ct, view.video.duration);
-  view.video.currentTime = ct;
-  return false;
-}
+window.onresize = function() {
+  setTimeout("view.adjust();", 250);
+};

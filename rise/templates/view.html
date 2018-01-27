@@ -9,15 +9,17 @@
     <title>{{ file["fullTitle"] }}  {% if file["episode"] %}#{{ file["episode"] }} {% endif %}{{ file["subTitle"] }}</title>
   </head>
   <body>
-    <div class="container-fluid">
-      <div class="row">
+    <div class="container-fluid" id="main-container">
+      <div class="row" id="video-row">
         <div class="col-md-12 text-center">
-          <video id="video" controls width="100%">
-            <source src="{{ file["mediaURL"] }}" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'/>
-          </video>
+          <div class="d-inline-block" id="video-div" style="display:inline-block">
+            <video id="video" controls width="100%">
+              <source src="{{ file["mediaURL"] }}" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'/>
+            </video>
+          </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row" id="footer-row">
         <div class="col-md-5">
           <div class="pull-left">
             {{ file["fullTitle"] }}&nbsp;&nbsp;
