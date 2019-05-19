@@ -15,7 +15,11 @@ view.init = function() {
     var ct = Math.max(parseInt(Cookies.get('time')) - 5, 0);
     view.video.currentTime = ct;
   }
-  view.video.play();
+  try {
+    view.video.play();
+  } catch(e) {
+    // do nothing
+  }
   setInterval("view.saveState()", view.INTERVAL * 1000);
 };
 
